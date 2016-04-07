@@ -5,23 +5,23 @@
 #   gem 'pg'
 #
 default: &default
-  adapter: postgresQL
+  adapter: postgresql
   encoding: unicode
   pool: 5
 
 development:
   <<: *default
-  database: JsonApi_development
+  database: to_json_development
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: JsonApi_test
+  database: to_json_test
 
 production:
   <<: *default
-  database: JsonApi_production
-  username: JsonApi
-  password: <%= ENV['JSONAPI_DATABASE_PASSWORD'] %>
+  database: to_json_production
+  username: to_json
+  password: <%= ENV['to_json_DATABASE_PASSWORD'] %>
