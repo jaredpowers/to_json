@@ -8,7 +8,7 @@
 
 
 20.times do
-  Post.create!(title: Faker::Hipster.word, body: Faker::Hipster.sentence(4))
+  Post.create!(title: Faker::Hipster.word, body: Faker::Hipster.paragraph(2))
 end
 
 10.times do
