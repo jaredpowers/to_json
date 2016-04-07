@@ -1,4 +1,4 @@
-class Api::UsersController < ApplicationController
+class Api::APIUsersController < ApplicationController
   respond_to :json
 
   def index
@@ -8,6 +8,9 @@ class Api::UsersController < ApplicationController
 
   def show
     respond_with @user
+
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: "Not Found", status: 404}, status: 404
   end
 
 
@@ -28,6 +31,9 @@ class Api::UsersController < ApplicationController
     @user.update(user_params)
 
     respond_with @user
+
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: "Not Found", status: 404}, status: 404
   end
 
 
@@ -35,6 +41,9 @@ class Api::UsersController < ApplicationController
     @user.destroy
 
     respond_with @user.destroy
+
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: "Not Found", status: 404}, status: 404
   end
 
 private

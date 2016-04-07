@@ -8,8 +8,10 @@ class Api::PostsController < ApplicationController
 
   def show
     respond_with @post
-  end
 
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: "Not Found", status: 404}, status: 404
+  end
 
   def new
     respond_with @post = Post.new
@@ -28,6 +30,9 @@ class Api::PostsController < ApplicationController
     @post.update(post_params)
 
     respond_with @post
+
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: "Not Found", status: 404}, status: 404
   end
 
 
@@ -35,6 +40,9 @@ class Api::PostsController < ApplicationController
     @post.destroy
 
     respond_with @post.destroy
+
+  rescue ActiveRecord::RecordNotFound
+    render json: { message: "Not Found", status: 404}, status: 404
   end
 
 private
@@ -46,5 +54,7 @@ private
   def post_params
     params.require(:post).permit(:title, :body)
   end
+
+
 
 end
