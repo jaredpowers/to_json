@@ -7,6 +7,7 @@ class Api::PostsController < ApplicationController
 
 
   def show
+    @post = set_posts
     respond_with @post
 
   rescue ActiveRecord::RecordNotFound

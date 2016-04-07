@@ -1,4 +1,4 @@
-class Api::APIUsersController < ApplicationController
+class Api::UsersController < ApplicationController
   respond_to :json
 
   def index
@@ -7,6 +7,7 @@ class Api::APIUsersController < ApplicationController
 
 
   def show
+    @user = set_user
     respond_with @user
 
   rescue ActiveRecord::RecordNotFound
