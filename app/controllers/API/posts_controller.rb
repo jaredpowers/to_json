@@ -19,7 +19,7 @@ class Api::PostsController < ApplicationController
   end
 
   def create
-    respond_with @post = Post.new(postname: params[:post][:postname])
+    respond_with @post = Post.new(post: params[:post][:body])
   end
 
   def edit
