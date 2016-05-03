@@ -1,14 +1,11 @@
 class PostsController < ApplicationController
 
   def index
-    @post = Post.new
+    @post = Post.all
   end
 
   def show
-    post = Post.find(params[:id])
-    if post
-      @post = postend
-    end
+    @post = Post.set_posts
   end
 
   def new
@@ -18,19 +15,20 @@ class PostsController < ApplicationController
   def create
     @post = Post.new
     @post.body = params[:post][:body]
+    @post.title = params[:post][:title]
     @post.save
   end
 
   def edit
-    @post = Post.find(params[:id])
+    @post = set_posts
   end
 
   def update
-    @post = Post.find(params[:id])
+    @post = Post.find(params[:id], post_params)
   end
 
   def destroy
-    @post = Post.find(params[:id])
+    @post = set_posts
     @post.destroy
   end
 

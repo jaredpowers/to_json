@@ -1,4 +1,5 @@
 class Api::PostsController < ApplicationController
+  protect_from_forgery with: :null_session
   respond_to :json
 
   def index
@@ -15,19 +16,23 @@ class Api::PostsController < ApplicationController
   end
 
   def new
+    @post = Post.new
     respond_with @post = Post.new
   end
 
   def create
+    @post = Post.new
     respond_with @post = Post.new(post: params[:post][:body])
   end
 
   def edit
+    @post = set_posts
     respond_with @post
   end
 
 
   def update
+    @post = set_posts
     @post.update(post_params)
 
     respond_with @post
@@ -38,6 +43,7 @@ class Api::PostsController < ApplicationController
 
 
   def destroy
+    @post = set_posts
     @post.destroy
 
     respond_with @post.destroy
